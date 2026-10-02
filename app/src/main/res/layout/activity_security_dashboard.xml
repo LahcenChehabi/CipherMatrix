@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#050505">
+
+    <com.example.ciphermatrix.RainViewDashboard
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="160dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="#2000E676"
+                android:padding="15dp"
+                android:elevation="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[ CIPHERMATRIX OS v2.0 ]"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"
+                    android:fontFamily="monospace"
+                    android:textStyle="bold"
+                    android:shadowColor="#00E676"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="15"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/// SYSTEM STATUS: ARMED &amp; SECURE ///"
+                    android:textColor="#00E676"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace"
+                    android:layout_marginTop="5dp"
+                    android:letterSpacing="0.1"/>
+            </LinearLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:alignmentMode="alignMargins">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_passwords_vault"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    app:cardBackgroundColor="#401A1A24"
+                    app:strokeColor="#8000E676"
+                    app:strokeWidth="1dp"
+                    app:cardCornerRadius="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🔑 Passwords"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="monospace"
+                        android:layout_gravity="center"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_stego_lab"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    app:cardBackgroundColor="#401A1A24"
+                    app:strokeColor="#8000E676"
+                    app:strokeWidth="1dp"
+                    app:cardCornerRadius="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🖼️ Stegano"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="monospace"
+                        android:layout_gravity="center"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_url_scanner"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    app:cardBackgroundColor="#401A1A24"
+                    app:strokeColor="#8000E676"
+                    app:strokeWidth="1dp"
+                    app:cardCornerRadius="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🌐 URL Scanner"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="monospace"
+                        android:layout_gravity="center"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_network_inspector"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    app:cardBackgroundColor="#401A1A24"
+                    app:strokeColor="#8000E676"
+                    app:strokeWidth="1dp"
+                    app:cardCornerRadius="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📡 Network"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="monospace"
+                        android:layout_gravity="center"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_privacy_audit"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_columnSpan="2"
+                    android:layout_margin="6dp"
+                    app:cardBackgroundColor="#401A1A24"
+                    app:strokeColor="#8000E676"
+                    app:strokeWidth="1dp"
+                    app:cardCornerRadius="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🛡️ Privacy Audit"
+                        android:textColor="#00E676"
+                        android:fontFamily="monospace"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_secure_qr"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_columnSpan="2"
+                    android:layout_margin="6dp"
+                    app:cardBackgroundColor="#401A1A24"
+                    app:strokeColor="#8000E676"
+                    app:strokeWidth="1dp"
+                    app:cardCornerRadius="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📷 Secure QR Scanner"
+                        android:textColor="#00E676"
+                        android:fontFamily="monospace"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_intruder_logs"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_columnSpan="2"
+                    android:layout_margin="6dp"
+                    app:cardBackgroundColor="#402A1010"
+                    app:strokeColor="#80FF5252"
+                    app:strokeWidth="1dp"
+                    app:cardCornerRadius="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🚨 Intruder Logs (Breach History)"
+                        android:textColor="#FF5252"
+                        android:fontFamily="monospace"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- ========================================== -->
+                <!-- الكارد الجديدة ديال Global Threat Map -->
+                <!-- ========================================== -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_global_threat_map"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_columnSpan="2"
+                    android:layout_margin="6dp"
+                    app:cardBackgroundColor="#400A192F"
+                    app:strokeColor="#8000E5FF"
+                    app:strokeWidth="1dp"
+                    app:cardCornerRadius="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🌍 Global Threat Map"
+                            android:textColor="#00E5FF"
+                            android:fontFamily="monospace"
+                            android:textStyle="bold"
+                            android:textSize="16sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="[ LIVE CYBER WARFARE FEED ]"
+                            android:textColor="#FFFFFF"
+                            android:fontFamily="monospace"
+                            android:textSize="10sp"
+                            android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <!-- ========================================== -->
+
+            </GridLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="bottom"
+        android:background="#E6050505"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#FF1744"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=">_ LIVE TERMINAL FEED:"
+            android:textColor="#FF1744"
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/tv_terminal_output"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="> Connecting to root...\n> Awaiting protocol..."
+            android:textColor="#00E676"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:maxLines="5"
+            android:ellipsize="end"/>
+    </LinearLayout>
+
+</FrameLayout>

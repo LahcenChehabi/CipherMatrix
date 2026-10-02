@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <LinearLayout
+        android:id="@+id/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="36dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="BASIC" android:textColor="#00E676" android:textSize="16sp" android:fontFamily="monospace" android:textStyle="bold"/>
+        <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1" />
+        <ImageButton android:id="@+id/btn_mic" android:layout_width="48dp" android:layout_height="48dp" android:src="@android:drawable/ic_btn_speak_now" app:tint="#00E676" android:background="?attr/selectableItemBackgroundBorderless" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_display"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="end|bottom"
+        android:padding="24dp"
+        app:layout_constraintTop_toBottomOf="@id/layout_header"
+        app:layout_constraintBottom_toTopOf="@id/layout_buttons"
+        app:layout_constraintVertical_weight="1">
+        <TextView android:id="@+id/tv_expression" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#757A82" android:textSize="24sp"/>
+        <TextView android:id="@+id/tv_display" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textColor="#FFFFFF" android:textSize="60sp" android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintHeight_percent="0.6">
+
+        <!-- Row 1 -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal">
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="AC" android:textColor="#FFFFFF" android:onClick="onNumberClick" app:backgroundTint="#FF453A" />
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="DEL" android:textColor="#FFFFFF" android:onClick="onNumberClick" app:backgroundTint="#FF453A" />
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="(" android:textColor="#FFFFFF" android:onClick="onNumberClick" app:backgroundTint="#2C2E35" />
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text=")" android:textColor="#FFFFFF" android:onClick="onNumberClick" app:backgroundTint="#2C2E35" />
+        </LinearLayout>
+
+        <!-- Row 2 -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal">
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="7" android:textColor="#FFFFFF" android:onClick="onNumberClick" app:backgroundTint="#1E1F24" />
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="8" android:textColor="#FFFFFF" android:onClick="onNumberClick" app:backgroundTint="#1E1F24" />
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="9" android:textColor="#FFFFFF" android:onClick="onNumberClick" app:backgroundTint="#1E1F24" />
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="÷" android:textColor="#000000" android:onClick="onNumberClick" app:backgroundTint="#00E676" />
+        </LinearLayout>
+
+        <!-- Row 3 -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal">
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="4" android:textColor="#FFFFFF" android:onClick="onNumberClick" app:backgroundTint="#1E1F24" />
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="5" android:textColor="#FFFFFF" android:onClick="onNumberClick" app:backgroundTint="#1E1F24" />
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="6" android:textColor="#FFFFFF" android:onClick="onNumberClick" app:backgroundTint="#1E1F24" />
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="×" android:textColor="#000000" android:onClick="onNumberClick" app:backgroundTint="#00E676" />
+        </LinearLayout>
+
+        <!-- Row 4 -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal">
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="1" android:textColor="#FFFFFF" android:onClick="onNumberClick" app:backgroundTint="#1E1F24" />
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="2" android:textColor="#FFFFFF" android:onClick="onNumberClick" app:backgroundTint="#1E1F24" />
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="3" android:textColor="#FFFFFF" android:onClick="onNumberClick" app:backgroundTint="#1E1F24" />
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="-" android:textColor="#000000" android:onClick="onNumberClick" app:backgroundTint="#00E676" />
+        </LinearLayout>
+
+        <!-- Row 5 -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal">
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="0" android:textColor="#FFFFFF" android:onClick="onNumberClick" app:backgroundTint="#1E1F24" />
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="." android:textColor="#FFFFFF" android:onClick="onNumberClick" app:backgroundTint="#1E1F24" />
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="+" android:textColor="#000000" android:onClick="onNumberClick" app:backgroundTint="#00E676" />
+            <com.google.android.material.button.MaterialButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:text="=" android:textColor="#000000" android:onClick="onNumberClick" app:backgroundTint="#00E676" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- هنا تم تعديل الارتفاع وحجم الأيقونات باش تبان الكتابة واضحة ومعزولة -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#0A0B0D"
+        app:itemIconTint="#00E676"
+        app:itemTextColor="#FFFFFF"
+        app:itemIconSize="24dp"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_nav_menu"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

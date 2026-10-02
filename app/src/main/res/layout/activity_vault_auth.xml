@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <com.example.ciphermatrix.MatrixRainView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- زر المنيو -->
+    <ImageButton
+        android:id="@+id/btn_menu"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:src="@android:drawable/ic_menu_sort_by_size"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Menu button"
+        app:tint="#00FF00" />
+
+    <!-- كارد الـ PIN: طالع بـ -48dp (1cm) من الوسط -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_pin_auth"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="-48dp"
+        app:cardBackgroundColor="#CC111111"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="20dp"
+        app:strokeColor="#00FF00"
+        app:strokeWidth="1dp"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="32dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@android:drawable/ic_secure"
+                android:contentDescription="Secure icon"
+                app:tint="#00FF00"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:id="@+id/tv_auth_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VAULT LOCKED"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
+
+            <TextView
+                android:id="@+id/tv_auth_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter PIN to decrypt"
+                android:textColor="#AAAAAA"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="24dp"/>
+
+            <EditText
+                android:id="@+id/et_pin_input"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:hint="••••"
+                android:textColorHint="#555555"
+                android:inputType="numberPassword"
+                android:maxLength="4"
+                android:autofillHints="password"
+                android:textColor="#00FF00"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.5"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#00FF00"
+                android:layout_marginBottom="24dp"/>
+
+            <Button
+                android:id="@+id/btn_submit_pin"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="ACCESS"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:backgroundTint="#00FF00"
+                app:cornerRadius="12dp"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- كارد البصمة: حتى هو طالع بـ -48dp باش يبقاو متناسقين -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_fingerprint_auth"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="-48dp"
+        app:cardBackgroundColor="#CC111111"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="20dp"
+        app:strokeColor="#00FF00"
+        app:strokeWidth="1dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="32dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_fingerprint_icon"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_fingerprint"
+                android:contentDescription="Fingerprint icon"
+                app:tint="#00FF00"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BIOMETRIC SCAN"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Touch the sensor to verify identity"
+                android:textColor="#AAAAAA"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:layout_marginBottom="30dp"/>
+
+            <Button
+                android:id="@+id/btn_scan_biometric"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="START SCAN"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:backgroundTint="#00FF00"
+                app:cornerRadius="12dp"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

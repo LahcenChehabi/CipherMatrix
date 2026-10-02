@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <com.example.ciphermatrix.ErrorMatrixView
+        android:id="@+id/matrix_container_alert"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:id="@+id/view_red_flash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#44FF0000"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_alert_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="monospace"
+        android:textColor="#00FF00"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="24dp" />
+
+    <ImageView
+        android:id="@+id/iv_clown_face"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/clown"
+        android:visibility="gone"
+        android:contentDescription="Clown Face" />
+
+</RelativeLayout>
