@@ -13,6 +13,8 @@ A disguised Android security vault — encrypted password manager, threat intell
 ![Firebase](https://img.shields.io/badge/Firebase-Auth%20%2B%20Firestore-FFCA28?logo=firebase&logoColor=white)
 ![Encryption](https://img.shields.io/badge/Encryption-AES--256%20%7C%20Keystore-blueviolet)
 ![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red.svg)
+![Last Commit](https://img.shields.io/github/last-commit/LahcenChehabi/CipherMatrix)
+![Repo Size](https://img.shields.io/github/repo-size/LahcenChehabi/CipherMatrix)
 
 </div>
 
@@ -21,10 +23,15 @@ A disguised Android security vault — encrypted password manager, threat intell
 ## 📑 Table of Contents
 
 - [Overview](#-overview)
+- [Screenshots](#-screenshots)
+- [Why I Built This](#-why-i-built-this)
 - [How It Works](#-how-it-works)
 - [Architecture: Accounts & Data Isolation](#-architecture-accounts--data-isolation)
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
+- [Installation](#-installation)
+- [Usage Guide](#-usage-guide)
+- [FAQ](#-faq)
 - [Project Structure](#-project-structure)
 - [Security Notes](#-security-notes)
 - [Roadmap](#-roadmap)
@@ -47,6 +54,21 @@ Every account is fully isolated: each person who uses the app gets their own unl
 | **Encryption** | AES-256-GCM, keys generated and sealed in the Android Keystore |
 | **Security tools** | 8 built-in modules — vault, URL scanner, network inspector, privacy audit, steganography lab, threat map, QR scanner, intruder logs |
 | **Intrusion response** | Silent front-camera capture on every wrong unlock attempt |
+
+## 📸 Screenshots
+
+<div align="center">
+
+| Calculator | Login | Dashboard | Password Vault |
+|---|---|---|---|
+| <img src="assets/screenshots/calculator.jpg" width="200"> | <img src="assets/screenshots/login.jpg" width="200"> | <img src="assets/screenshots/dashboard.jpg" width="200"> | <img src="assets/screenshots/vault.jpg" width="200"> |
+| *Looks ordinary.* | *Isn't.* | *CipherMatrix OS* | *Encrypted & isolated* |
+
+</div>
+
+## 🧭 Why I Built This
+
+I wanted to go beyond tutorials and actually *build* a real security product — not a toy demo, but something with genuine threat modeling behind it: encryption that lives in hardware-backed storage, accounts that can't see each other's data even if the client is compromised, and a UI that doesn't advertise what it's protecting. CipherMatrix is that project — a hands-on exploration of Android security engineering, from Keystore cryptography to Firebase access control, wrapped in an interface I'd actually want to use.
 
 ## ⚙️ How It Works
 
@@ -156,6 +178,86 @@ flowchart LR
 | Math engine | exp4j (expression evaluation for the calculator) |
 | External APIs | VirusTotal (URL reputation), News API (security headlines) |
 
+## 🛠️ Installation
+
+Want to build CipherMatrix yourself? Here's the full setup.
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/LahcenChehabi/CipherMatrix.git
+```
+
+Open the folder in **Android Studio** (`File > Open`) and let Gradle sync.
+
+### 2. Set up Firebase
+
+CipherMatrix needs its own Firebase project for Authentication and Firestore:
+
+1. Go to the [Firebase Console](https://console.firebase.google.com/) and create a new project.
+2. Add an Android app to it with the package name `com.example.ciphermatrix`, and download the generated `google-services.json`.
+3. Place that file in the project's `app/` folder.
+4. In **Authentication > Sign-in method**, enable the **Email/Password** provider.
+5. In **Firestore Database**, create a database, then set the security rules to:
+
+```js
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}
+```
+
+This keeps every account's vault private to that account only.
+
+### 3. Add your API keys
+
+Two features call external APIs and need free keys of your own:
+
+- [VirusTotal](https://www.virustotal.com/gui/join-us) — powers the URL Scanner
+- [NewsAPI](https://newsapi.org/) — powers the Security News Feed
+
+Create a `local.properties` file in the project root (or add to the existing one) with:
+
+```properties
+VT_API_KEY=your_virustotal_api_key
+NEWS_API_KEY=your_newsapi_key
+```
+
+This file is excluded from Git, so your keys stay private.
+
+### 4. Build & run
+
+Run the app on a device or emulator — ideally one with a front camera and fingerprint sensor, to get the full experience.
+
+## 📖 Usage Guide
+
+1. **Open the app.** It launches as a plain, working calculator — nothing looks unusual.
+2. **Set your unlock code.** The very first calculation you type and confirm with `=` on a fresh install becomes your personal unlock code for that device. Choose it deliberately.
+3. **Unlock the vault.** Type that same sequence again, followed by `=`, to move past the calculator into the login screen. Any other calculation just computes normally — and a wrong attempt silently takes a front-camera photo in the background.
+4. **Log in or create an account.** Accounts are isolated per person — sign up with an email and password, or sign back into an existing one.
+5. **Enter the dashboard.** A Matrix-style welcome animation plays with a personalized voice greeting, then lands you on the Security Dashboard — the hub for every tool.
+6. **Open the Password Vault.** The first time, set a PIN or enable fingerprint unlock. From there you can add, search, and generate encrypted credentials, all private to your account.
+7. **Explore the other tools** from the dashboard — URL/QR scanner, network inspector, privacy audit, steganography lab, global threat map, and the security news feed.
+8. **Check the Intruder Logs** any time to see timestamped photos of every wrong unlock attempt on your device.
+
+## ❓ FAQ
+
+**Why does my first calculation become the unlock code?**
+It's the simplest way to give every installation its own private code without a setup wizard that tips off anyone watching. Just be deliberate about what you type the first time.
+
+**Is my data safe if someone else uses my phone?**
+Only if they don't know the unlock code or your account password — and even then, the vault itself is gated behind a second PIN/fingerprint check. Every wrong unlock attempt is also silently photographed.
+
+**Can two people use the same installed app with different vaults?**
+Yes. Accounts are fully isolated through Firebase Authentication and per-user Firestore paths — one person's saved credentials are never visible to another account, even on the same device.
+
+**What happens if I forget my unlock code?**
+There's currently no recovery flow for the calculator unlock code — clearing the app's storage resets it, but that also clears the locally cached state. Your vault data itself stays safe in Firestore, tied to your account login.
+
 ## 📂 Project Structure
 
 ```
@@ -201,13 +303,25 @@ CipherMatrix/
 ## 📄 License
 
 Copyright (c) 2026 Lahcen Chehabi. All rights reserved.
+See [LICENSE](LICENSE) for terms.
 
-This source code is made publicly visible for viewing and evaluation purposes only. No permission is granted to use, copy, modify, merge, publish, distribute, sublicense, or sell this software, in original or modified form, for any purpose without prior written permission from the author. See [LICENSE](LICENSE) for full terms.
+## 🙏 Acknowledgments
+
+CipherMatrix stands on the shoulders of some excellent open-source libraries:
+
+- [Firebase](https://firebase.google.com/) — Authentication & Firestore
+- [Retrofit](https://square.github.io/retrofit/) + [Gson](https://github.com/google/gson) — networking
+- [Glide](https://github.com/bumptech/glide) — image loading
+- [ZXing (journeyapps)](https://github.com/journeyapps/zxing-android-embedded) — QR scanning
+- [exp4j](https://github.com/fasseg/exp4j) — expression evaluation for the calculator
+- [AndroidX Biometric](https://developer.android.com/jetpack/androidx/releases/biometric) — fingerprint authentication
 
 ---
 
 <div align="center">
 
 **Built by [Lahcen Chehabi](https://github.com/LahcenChehabi)**
+
+⭐ If this project caught your interest, consider giving it a star.
 
 </div>
