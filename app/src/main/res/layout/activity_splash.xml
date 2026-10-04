@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#0A0A0A">
+
+    <ImageView
+        android:id="@+id/iv_splash_logo"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/app_icon" />
+
+    <View
+        android:id="@+id/divider_splash"
+        android:layout_width="60dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="18dp"
+        android:background="#00FF41" />
+
+    <TextView
+        android:id="@+id/tv_splash_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:fontFamily="monospace"
+        android:text="CIPHERMATRIX"
+        android:textColor="#00FF41"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.15" />
+
+    <TextView
+        android:id="@+id/tv_splash_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="monospace"
+        android:text="SECURE VAULT &amp; INTEL SYSTEM"
+        android:textColor="#4D8C5A"
+        android:textSize="11sp"
+        android:letterSpacing="0.2" />
+
+    <TextView
+        android:id="@+id/tv_splash_powered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="monospace"
+        android:text="powered by CHEHABI LAHCEN"
+        android:textColor="#D6D6D6"
+        android:textSize="12sp"
+        android:letterSpacing="0.08" />
+</LinearLayout>

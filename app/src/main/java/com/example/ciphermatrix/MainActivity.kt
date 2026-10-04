@@ -119,8 +119,8 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 if (inputSequence.isNotEmpty() && inputSequence == savedCode) {
-                    // Correct code entered -> Go to Login
-                    startActivity(Intent(this, LoginActivity::class.java))
+                    // Correct code entered -> Go to Splash, then Login
+                    startActivity(Intent(this, SplashActivity::class.java))
 
                     inputSequence = ""
                     tvDisplay.text = "0"
