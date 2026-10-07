@@ -55,7 +55,7 @@ Every account is fully isolated: each person who uses the app gets their own unl
 | **Security tools** | 8 built-in modules — vault, URL scanner, network inspector, privacy audit, steganography lab, threat map, QR scanner, intruder logs |
 | **Intrusion response** | Silent front-camera capture on every wrong unlock attempt |
 
-## Screenshots
+## 📸 Screenshots
 
 <div align="center">
 
@@ -75,21 +75,21 @@ I wanted to go beyond tutorials and build something with real threat modeling be
 ```mermaid
 flowchart TD
     A[App opens as a<br/>working Calculator] -->|User types a sequence| B{Sequence ends<br/>with '='}
-    B -->|First time ever: saved as<br/>this device's unlock code| C[Login Screen]
+    B -->|First time ever: saved as<br/>this device's unlock code| C[🔑 Login Screen]
     B -->|Correct unlock code| C
     B -->|Anything else| D[Normal calculation result<br/>shown on screen]
-    D -->|Silently in the background| E[Front camera takes<br/>a hidden photo]
+    D -->|Silently in the background| E[📸 Front camera takes<br/>a hidden photo]
     E --> F[Saved to a hidden<br/>Intruder Logs folder]
-    C -->|Sign in or create account| G[Matrix Welcome Screen<br/>Dynamic TTS voice greeting]
-    G --> H[Security Dashboard]
-    H --> I[Password Vault<br/>PIN / Fingerprint gate]
-    H --> J[URL & QR Scanner<br/>VirusTotal check]
-    H --> K[Network Inspector]
-    H --> L[Privacy Audit]
-    H --> M[Steganography Lab]
-    H --> N[Global Threat Map]
-    H --> O[Security News Feed]
-    H --> P[Intruder Logs Gallery]
+    C -->|Sign in or create account| G[🎬 Matrix Welcome Screen<br/>Dynamic TTS voice greeting]
+    G --> H[🖥️ Security Dashboard]
+    H --> I[🔐 Password Vault<br/>PIN / Fingerprint gate]
+    H --> J[🌐 URL & QR Scanner<br/>VirusTotal check]
+    H --> K[📡 Network Inspector]
+    H --> L[🕵️ Privacy Audit]
+    H --> M[🖼️ Steganography Lab]
+    H --> N[🗺️ Global Threat Map]
+    H --> O[📰 Security News Feed]
+    H --> P[🚨 Intruder Logs Gallery]
 ```
 
 **In short:** every calculation you make is real. Every wrong unlock attempt is quietly logged with a photo. The right code leads to a login, and only a valid account reaches the vault.
@@ -100,23 +100,23 @@ Each account created in the app is isolated from every other account, end to end
 
 ```mermaid
 flowchart LR
-    subgraph Device["On-device"]
+    subgraph Device["📱 On-device"]
         A[Calculator unlock code<br/>unique per device] --> B[Login / Create Account]
     end
 
-    subgraph FirebaseAuth["Firebase Authentication"]
+    subgraph FirebaseAuth["🔑 Firebase Authentication"]
         B --> C[Email + Password<br/>verified against account]
         C --> D[Unique UID issued<br/>per account]
     end
 
-    subgraph Firestore["Firestore Database"]
+    subgraph Firestore["☁️ Firestore Database"]
         D --> E["users/{uid}/vault/"]
         E --> F[Only this account's<br/>AES-256-GCM encrypted credentials]
     end
 
     F -.->|Security Rule| G{"request.auth.uid<br/>== userId ?"}
     G -->|Yes| F
-    G -->|No, different account| H[Access Denied]
+    G -->|No, different account| H[🚫 Access Denied]
 ```
 
 **What this guarantees:**
@@ -125,9 +125,9 @@ flowchart LR
 - Access control is enforced at the database level, not just in the app's interface.
 - Every credential is encrypted with a key that is generated and sealed inside the Android Keystore on first use — it never exists as plain text in source code or leaves secure hardware.
 
-## Features
+## ✨ Features
 
-### Accounts & Vault Access
+### 🔑 Accounts & Vault Access
 | Feature | Description |
 |---|---|
 | **Calculator disguise** | A fully functional calculator (with voice input) is the app's real launcher icon and home screen |
@@ -141,7 +141,7 @@ flowchart LR
 | **Auto re-lock** | The vault automatically re-locks itself the moment the app is minimized |
 | **Keystore-backed AES-256-GCM** | Credentials are encrypted with a hardware-sealed key — not a string in source code |
 
-### Threat & Network Tools
+### 🛰️ Threat & Network Tools
 | Feature | Description |
 |---|---|
 | **URL Scanner** | Submits any link to the VirusTotal API and reports back whether it's flagged as malicious |
@@ -151,7 +151,7 @@ flowchart LR
 | **Steganography Lab** | Hides and extracts secret text messages inside image files |
 | **Global Threat Map** | An embedded live map visualizing cyberattacks happening around the world in real time |
 
-### Awareness & Experience
+### 🧠 Awareness & Experience
 | Feature | Description |
 |---|---|
 | **Security News Feed** | Pulls live cybersecurity headlines from a news API |
@@ -178,7 +178,7 @@ flowchart LR
 | Math engine | exp4j (expression evaluation for the calculator) |
 | External APIs | VirusTotal (URL reputation), News API (security headlines) |
 
-## Installation
+## 🛠️ Installation
 
 Want to build CipherMatrix yourself? Here's the full setup.
 
@@ -258,7 +258,7 @@ Yes. Accounts are fully isolated through Firebase Authentication and per-user Fi
 **What happens if I forget my unlock code?**
 There's currently no recovery flow for the calculator unlock code — clearing the app's storage resets it, but that also clears the locally cached state. Your vault data itself stays safe in Firestore, tied to your account login.
 
-## Project Structure
+## 📂 Project Structure
 
 ```
 CipherMatrix/
@@ -285,7 +285,7 @@ CipherMatrix/
     └── res/raw/                         Sound effects (access granted/denied, intruder alert)
 ```
 
-## Security Notes
+## 🔒 Security Notes
 
 - **Per-user data isolation is enforced server-side** via Firestore security rules, not just in the app's UI — this holds even if the client code were bypassed.
 - **Encryption keys never touch source code.** The AES-256-GCM key used to protect the vault is generated on first use and sealed inside the Android Keystore, backed by hardware where available.
