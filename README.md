@@ -2,7 +2,7 @@
 
 <img src="assets/logo.png" width="140" alt="CipherMatrix logo">
 
-#  CipherMatrix
+# CipherMatrix
 
 ### A calculator that isn't just a calculator.
 
@@ -20,28 +20,28 @@ A disguised Android security vault — encrypted password manager, threat intell
 
 ---
 
-## 📑 Table of Contents
+## Table of Contents
 
-- [Overview](#-overview)
-- [Screenshots](#-screenshots)
-- [Why I Built This](#-why-i-built-this)
-- [How It Works](#-how-it-works)
-- [Architecture: Accounts & Data Isolation](#-architecture-accounts--data-isolation)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Installation](#-installation)
-- [Usage Guide](#-usage-guide)
-- [FAQ](#-faq)
-- [Project Structure](#-project-structure)
-- [Security Notes](#-security-notes)
-- [Roadmap](#-roadmap)
-- [License](#-license)
+- [Overview](#overview)
+- [Screenshots](#screenshots)
+- [Why I Built This](#why-i-built-this)
+- [How It Works](#how-it-works)
+- [Architecture: Accounts & Data Isolation](#architecture-accounts--data-isolation)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage Guide](#usage-guide)
+- [FAQ](#faq)
+- [Project Structure](#project-structure)
+- [Security Notes](#security-notes)
+- [Roadmap](#roadmap)
+- [License](#license)
 
 ---
 
-## 🔎 Overview
+## Overview
 
-CipherMatrix is built around a simple idea: **security tools that hide in plain sight.** The app opens as a fully working calculator — punch in numbers, do real math, even speak an equation out loud. But that calculator is a front door. Type the right sequence and the screen transitions into a personal login, then a Matrix-style command center giving access to a private encrypted vault, network tools, threat intelligence, and more.
+CipherMatrix opens as a fully working calculator — punch in numbers, do real math, even speak an equation out loud. But that calculator is a front door. Type the right sequence and the screen transitions into a personal login, then a Matrix-style command center giving access to a private encrypted vault, network tools, threat intelligence, and more.
 
 Every account is fully isolated: each person who uses the app gets their own unlock code, their own login, and their own private vault — no shared data between users.
 
@@ -55,7 +55,7 @@ Every account is fully isolated: each person who uses the app gets their own unl
 | **Security tools** | 8 built-in modules — vault, URL scanner, network inspector, privacy audit, steganography lab, threat map, QR scanner, intruder logs |
 | **Intrusion response** | Silent front-camera capture on every wrong unlock attempt |
 
-## 📸 Screenshots
+## Screenshots
 
 <div align="center">
 
@@ -66,57 +66,57 @@ Every account is fully isolated: each person who uses the app gets their own unl
 
 </div>
 
-## 🧭 Why I Built This
+## Why I Built This
 
-I wanted to go beyond tutorials and actually *build* a real security product — not a toy demo, but something with genuine threat modeling behind it: encryption that lives in hardware-backed storage, accounts that can't see each other's data even if the client is compromised, and a UI that doesn't advertise what it's protecting. CipherMatrix is that project — a hands-on exploration of Android security engineering, from Keystore cryptography to Firebase access control, wrapped in an interface I'd actually want to use.
+I wanted to go beyond tutorials and build something with real threat modeling behind it: encryption that lives in hardware-backed storage, accounts that can't see each other's data even if the client is compromised, and a UI that doesn't advertise what it's protecting. CipherMatrix is that project — a way to practice Android security engineering, from Keystore cryptography to Firebase access control.
 
-## ⚙️ How It Works
+## How It Works
 
 ```mermaid
 flowchart TD
     A[App opens as a<br/>working Calculator] -->|User types a sequence| B{Sequence ends<br/>with '='}
-    B -->|First time ever: saved as<br/>this device's unlock code| C[🔑 Login Screen]
+    B -->|First time ever: saved as<br/>this device's unlock code| C[Login Screen]
     B -->|Correct unlock code| C
     B -->|Anything else| D[Normal calculation result<br/>shown on screen]
-    D -->|Silently in the background| E[📸 Front camera takes<br/>a hidden photo]
+    D -->|Silently in the background| E[Front camera takes<br/>a hidden photo]
     E --> F[Saved to a hidden<br/>Intruder Logs folder]
-    C -->|Sign in or create account| G[🎬 Matrix Welcome Screen<br/>Dynamic TTS voice greeting]
-    G --> H[🖥️ Security Dashboard]
-    H --> I[🔐 Password Vault<br/>PIN / Fingerprint gate]
-    H --> J[🌐 URL & QR Scanner<br/>VirusTotal check]
-    H --> K[📡 Network Inspector]
-    H --> L[🕵️ Privacy Audit]
-    H --> M[🖼️ Steganography Lab]
-    H --> N[🗺️ Global Threat Map]
-    H --> O[📰 Security News Feed]
-    H --> P[🚨 Intruder Logs Gallery]
+    C -->|Sign in or create account| G[Matrix Welcome Screen<br/>Dynamic TTS voice greeting]
+    G --> H[Security Dashboard]
+    H --> I[Password Vault<br/>PIN / Fingerprint gate]
+    H --> J[URL & QR Scanner<br/>VirusTotal check]
+    H --> K[Network Inspector]
+    H --> L[Privacy Audit]
+    H --> M[Steganography Lab]
+    H --> N[Global Threat Map]
+    H --> O[Security News Feed]
+    H --> P[Intruder Logs Gallery]
 ```
 
 **In short:** every calculation you make is real. Every wrong unlock attempt is quietly logged with a photo. The right code leads to a login, and only a valid account reaches the vault.
 
-## 🔐 Architecture: Accounts & Data Isolation
+## Architecture: Accounts & Data Isolation
 
 Each account created in the app is isolated from every other account, end to end — from sign-in to the actual password data.
 
 ```mermaid
 flowchart LR
-    subgraph Device["📱 On-device"]
+    subgraph Device["On-device"]
         A[Calculator unlock code<br/>unique per device] --> B[Login / Create Account]
     end
 
-    subgraph FirebaseAuth["🔑 Firebase Authentication"]
+    subgraph FirebaseAuth["Firebase Authentication"]
         B --> C[Email + Password<br/>verified against account]
         C --> D[Unique UID issued<br/>per account]
     end
 
-    subgraph Firestore["☁️ Firestore Database"]
+    subgraph Firestore["Firestore Database"]
         D --> E["users/{uid}/vault/"]
         E --> F[Only this account's<br/>AES-256-GCM encrypted credentials]
     end
 
     F -.->|Security Rule| G{"request.auth.uid<br/>== userId ?"}
     G -->|Yes| F
-    G -->|No, different account| H[🚫 Access Denied]
+    G -->|No, different account| H[Access Denied]
 ```
 
 **What this guarantees:**
@@ -125,9 +125,9 @@ flowchart LR
 - Access control is enforced at the database level, not just in the app's interface.
 - Every credential is encrypted with a key that is generated and sealed inside the Android Keystore on first use — it never exists as plain text in source code or leaves secure hardware.
 
-## ✨ Features
+## Features
 
-### 🔑 Accounts & Vault Access
+### Accounts & Vault Access
 | Feature | Description |
 |---|---|
 | **Calculator disguise** | A fully functional calculator (with voice input) is the app's real launcher icon and home screen |
@@ -141,7 +141,7 @@ flowchart LR
 | **Auto re-lock** | The vault automatically re-locks itself the moment the app is minimized |
 | **Keystore-backed AES-256-GCM** | Credentials are encrypted with a hardware-sealed key — not a string in source code |
 
-### 🛰️ Threat & Network Tools
+### Threat & Network Tools
 | Feature | Description |
 |---|---|
 | **URL Scanner** | Submits any link to the VirusTotal API and reports back whether it's flagged as malicious |
@@ -151,7 +151,7 @@ flowchart LR
 | **Steganography Lab** | Hides and extracts secret text messages inside image files |
 | **Global Threat Map** | An embedded live map visualizing cyberattacks happening around the world in real time |
 
-### 🧠 Awareness & Experience
+### Awareness & Experience
 | Feature | Description |
 |---|---|
 | **Security News Feed** | Pulls live cybersecurity headlines from a news API |
@@ -159,7 +159,7 @@ flowchart LR
 | **Immersive sound design** | Distinct sound cues for access granted, access denied, and intrusion alerts |
 | **Voice input** | Speak an equation out loud on the calculator screen and it's transcribed and calculated |
 
-## 🧰 Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -178,7 +178,7 @@ flowchart LR
 | Math engine | exp4j (expression evaluation for the calculator) |
 | External APIs | VirusTotal (URL reputation), News API (security headlines) |
 
-## 🛠️ Installation
+## Installation
 
 Want to build CipherMatrix yourself? Here's the full setup.
 
@@ -233,7 +233,7 @@ This file is excluded from Git, so your keys stay private.
 
 Run the app on a device or emulator — ideally one with a front camera and fingerprint sensor, to get the full experience.
 
-## 📖 Usage Guide
+## Usage Guide
 
 1. **Open the app.** It launches as a plain, working calculator — nothing looks unusual.
 2. **Set your unlock code.** The very first calculation you type and confirm with `=` on a fresh install becomes your personal unlock code for that device. Choose it deliberately.
@@ -244,7 +244,7 @@ Run the app on a device or emulator — ideally one with a front camera and fing
 7. **Explore the other tools** from the dashboard — URL/QR scanner, network inspector, privacy audit, steganography lab, global threat map, and the security news feed.
 8. **Check the Intruder Logs** any time to see timestamped photos of every wrong unlock attempt on your device.
 
-## ❓ FAQ
+## FAQ
 
 **Why does my first calculation become the unlock code?**
 It's the simplest way to give every installation its own private code without a setup wizard that tips off anyone watching. Just be deliberate about what you type the first time.
@@ -258,7 +258,7 @@ Yes. Accounts are fully isolated through Firebase Authentication and per-user Fi
 **What happens if I forget my unlock code?**
 There's currently no recovery flow for the calculator unlock code — clearing the app's storage resets it, but that also clears the locally cached state. Your vault data itself stays safe in Firestore, tied to your account login.
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 CipherMatrix/
@@ -285,14 +285,14 @@ CipherMatrix/
     └── res/raw/                         Sound effects (access granted/denied, intruder alert)
 ```
 
-## 🔒 Security Notes
+## Security Notes
 
 - **Per-user data isolation is enforced server-side** via Firestore security rules, not just in the app's UI — this holds even if the client code were bypassed.
 - **Encryption keys never touch source code.** The AES-256-GCM key used to protect the vault is generated on first use and sealed inside the Android Keystore, backed by hardware where available.
 - API keys (VirusTotal, News API) live in `local.properties` / `BuildConfig` fields, never committed to source.
 - The hidden-camera "intruder selfie" feature captures photos without the other person's knowledge — this is intended purely as a personal anti-tamper feature for *your own device*.
 
-## 🛣️ Roadmap
+## Roadmap
 
 - [x] Per-user login / account system (Firebase Authentication)
 - [x] Per-user vault isolation at the database level
@@ -300,12 +300,12 @@ CipherMatrix/
 - [x] Keystore-backed AES-256-GCM encryption (no hardcoded key)
 - [ ] More detection & security tools added over time
 
-## 📄 License
+## License
 
 Copyright (c) 2026 Lahcen Chehabi. All rights reserved.
 See [LICENSE](LICENSE) for terms.
 
-##  Acknowledgments
+## Acknowledgments
 
 CipherMatrix stands on the shoulders of some excellent open-source libraries:
 
@@ -322,6 +322,6 @@ CipherMatrix stands on the shoulders of some excellent open-source libraries:
 
 **Built by [Lahcen Chehabi](https://github.com/LahcenChehabi)**
 
-⭐ If this project caught your interest, consider giving it a star.
+If this project caught your interest, consider giving it a star.
 
 </div>
