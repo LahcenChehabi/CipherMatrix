@@ -81,14 +81,14 @@ flowchart TD
     D -->|Silently in the background| E[📸 Front camera takes<br/>a hidden photo]
     E --> F[Saved to a hidden<br/>Intruder Logs folder]
     C -->|Sign in or create account| G[ Matrix Welcome Screen<br/>Dynamic TTS voice greeting]
-    G --> H[🖥️ Security Dashboard]
+    G --> H[ Security Dashboard]
     H --> I[🔐 Password Vault<br/>PIN / Fingerprint gate]
     H --> J[🌐 URL & QR Scanner<br/>VirusTotal check]
-    H --> K[📡 Network Inspector]
-    H --> L[🕵️ Privacy Audit]
+    H --> K[Network Inspector]
+    H --> L[ Privacy Audit]
     H --> M[🖼️ Steganography Lab]
-    H --> N[🗺️ Global Threat Map]
-    H --> O[📰 Security News Feed]
+    H --> N[ Global Threat Map]
+    H --> O[ Security News Feed]
     H --> P[🚨 Intruder Logs Gallery]
 ```
 
@@ -116,7 +116,7 @@ flowchart LR
 
     F -.->|Security Rule| G{"request.auth.uid<br/>== userId ?"}
     G -->|Yes| F
-    G -->|No, different account| H[🚫 Access Denied]
+    G -->|No, different account| H[ Access Denied]
 ```
 
 **What this guarantees:**
@@ -151,7 +151,7 @@ flowchart LR
 | **Steganography Lab** | Hides and extracts secret text messages inside image files |
 | **Global Threat Map** | An embedded live map visualizing cyberattacks happening around the world in real time |
 
-### 🧠 Awareness & Experience
+### Awareness & Experience
 | Feature | Description |
 |---|---|
 | **Security News Feed** | Pulls live cybersecurity headlines from a news API |
@@ -159,7 +159,7 @@ flowchart LR
 | **Immersive sound design** | Distinct sound cues for access granted, access denied, and intrusion alerts |
 | **Voice input** | Speak an equation out loud on the calculator screen and it's transcribed and calculated |
 
-## 🧰 Tech Stack
+##  Tech Stack
 
 | Layer | Technology |
 |---|---|
