@@ -6,7 +6,7 @@
 
 ### A calculator that isn't just a calculator.
 
-A disguised Android security vault — encrypted password manager, threat intelligence dashboard, and a full cybersecurity toolkit, hidden behind an ordinary calculator interface.
+A disguised Android security vault: encrypted password manager, threat intelligence dashboard, and a full cybersecurity toolkit, hidden behind an ordinary calculator interface.
 
 ![Kotlin](https://img.shields.io/badge/Kotlin-Android-7F52FF?logo=kotlin&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-SDK%2029%2B-3DDC84?logo=android&logoColor=white)
@@ -41,9 +41,9 @@ A disguised Android security vault — encrypted password manager, threat intell
 
 ## Overview
 
-CipherMatrix opens as a fully working calculator — punch in numbers, do real math, even speak an equation out loud. But that calculator is a front door. Type the right sequence and the screen transitions into a personal login, then a Matrix-style command center giving access to a private encrypted vault, network tools, threat intelligence, and more.
+CipherMatrix opens as a fully working calculator: punch in numbers, do real math, even speak an equation out loud. But that calculator is a front door. Type the right sequence and the screen transitions into a personal login, then a Matrix-style command center giving access to a private encrypted vault, network tools, threat intelligence, and more.
 
-Every account is fully isolated: each person who uses the app gets their own unlock code, their own login, and their own private vault — no shared data between users.
+Every account is fully isolated: each person who uses the app gets their own unlock code, their own login, and their own private vault, with no shared data between users.
 
 ### At a Glance
 
@@ -52,7 +52,7 @@ Every account is fully isolated: each person who uses the app gets their own unl
 | **Entry point** | A fully functional calculator, with voice input |
 | **Accounts** | Firebase Authentication, one isolated vault per user |
 | **Encryption** | AES-256-GCM, keys generated and sealed in the Android Keystore |
-| **Security tools** | 8 built-in modules — vault, URL scanner, network inspector, privacy audit, steganography lab, threat map, QR scanner, intruder logs |
+| **Security tools** | 8 built-in modules: vault, URL scanner, network inspector, privacy audit, steganography lab, threat map, QR scanner, intruder logs |
 | **Intrusion response** | Silent front-camera capture on every wrong unlock attempt |
 
 ## 📸 Screenshots
@@ -68,7 +68,7 @@ Every account is fully isolated: each person who uses the app gets their own unl
 
 ## Why I Built This
 
-I wanted to go beyond tutorials and build something with real threat modeling behind it: encryption that lives in hardware-backed storage, accounts that can't see each other's data even if the client is compromised, and a UI that doesn't advertise what it's protecting. CipherMatrix is that project — a way to practice Android security engineering, from Keystore cryptography to Firebase access control.
+I wanted to go beyond tutorials and build something with real threat modeling behind it: encryption that lives in hardware-backed storage, accounts that can't see each other's data even if the client is compromised, and a UI that doesn't advertise what it's protecting. CipherMatrix is that project, a way to practice Android security engineering, from Keystore cryptography to Firebase access control.
 
 ## How It Works
 
@@ -96,7 +96,7 @@ flowchart TD
 
 ## Architecture: Accounts & Data Isolation
 
-Each account created in the app is isolated from every other account, end to end — from sign-in to the actual password data.
+Each account created in the app is isolated from every other account, end to end, from sign-in to the actual password data.
 
 ```mermaid
 flowchart LR
@@ -120,10 +120,10 @@ flowchart LR
 ```
 
 **What this guarantees:**
-- Two people using the app never see each other's saved passwords — each account's data lives in its own `users/{uid}/vault` path.
+- Two people using the app never see each other's saved passwords: each account's data lives in its own `users/{uid}/vault` path.
 - The Firestore security rules enforce this server-side: even if someone tried to query another account's data directly, the rule `request.auth.uid == userId` blocks it.
 - Access control is enforced at the database level, not just in the app's interface.
-- Every credential is encrypted with a key that is generated and sealed inside the Android Keystore on first use — it never exists as plain text in source code or leaves secure hardware.
+- Every credential is encrypted with a key that is generated and sealed inside the Android Keystore on first use. It never exists as plain text in source code or leaves secure hardware.
 
 ## ✨ Features
 
@@ -134,12 +134,12 @@ flowchart LR
 | **Per-device unlock code** | The first calculation ever entered on a device silently becomes that device's unlock sequence |
 | **Intruder Selfie** | Any *incorrect* unlock attempt silently snaps a front-camera photo and stores it in a hidden log |
 | **Intruder Logs Gallery** | A gallery view (with timestamps) of everyone who tried to guess the code |
-| **Account login system** | Email/password accounts via Firebase Authentication — create an account or sign back in |
-| **Dynamic voice greeting** | Text-to-Speech welcomes each account by name on login — no fixed recording |
+| **Account login system** | Email/password accounts via Firebase Authentication; create an account or sign back in |
+| **Dynamic voice greeting** | Text-to-Speech welcomes each account by name on login (not a fixed recording) |
 | **Per-user vault isolation** | Every account's saved credentials live in their own private Firestore path, enforced server-side |
 | **PIN + Fingerprint vault lock** | A second layer on top of login: PIN code or biometric authentication gates the vault itself |
 | **Auto re-lock** | The vault automatically re-locks itself the moment the app is minimized |
-| **Keystore-backed AES-256-GCM** | Credentials are encrypted with a hardware-sealed key — not a string in source code |
+| **Keystore-backed AES-256-GCM** | Credentials are encrypted with a hardware-sealed key, not a string in source code |
 
 ### 🛰️ Threat & Network Tools
 | Feature | Description |
@@ -217,8 +217,8 @@ This keeps every account's vault private to that account only.
 
 Two features call external APIs and need free keys of your own:
 
-- [VirusTotal](https://www.virustotal.com/gui/join-us) — powers the URL Scanner
-- [NewsAPI](https://newsapi.org/) — powers the Security News Feed
+- [VirusTotal](https://www.virustotal.com/gui/join-us): powers the URL Scanner
+- [NewsAPI](https://newsapi.org/): powers the Security News Feed
 
 Create a `local.properties` file in the project root (or add to the existing one) with:
 
@@ -231,17 +231,17 @@ This file is excluded from Git, so your keys stay private.
 
 ### 4. Build & run
 
-Run the app on a device or emulator — ideally one with a front camera and fingerprint sensor, to get the full experience.
+Run the app on a device or emulator, ideally one with a front camera and fingerprint sensor, to get the full experience.
 
 ## Usage Guide
 
-1. **Open the app.** It launches as a plain, working calculator — nothing looks unusual.
+1. **Open the app.** It launches as a plain, working calculator; nothing looks unusual.
 2. **Set your unlock code.** The very first calculation you type and confirm with `=` on a fresh install becomes your personal unlock code for that device. Choose it deliberately.
-3. **Unlock the vault.** Type that same sequence again, followed by `=`, to move past the calculator into the login screen. Any other calculation just computes normally — and a wrong attempt silently takes a front-camera photo in the background.
-4. **Log in or create an account.** Accounts are isolated per person — sign up with an email and password, or sign back into an existing one.
-5. **Enter the dashboard.** A Matrix-style welcome animation plays with a personalized voice greeting, then lands you on the Security Dashboard — the hub for every tool.
+3. **Unlock the vault.** Type that same sequence again, followed by `=`, to move past the calculator into the login screen. Any other calculation just computes normally. A wrong attempt silently takes a front-camera photo in the background.
+4. **Log in or create an account.** Accounts are isolated per person. Sign up with an email and password, or sign back into an existing one.
+5. **Enter the dashboard.** A Matrix-style welcome animation plays with a personalized voice greeting, then lands you on the Security Dashboard, the hub for every tool.
 6. **Open the Password Vault.** The first time, set a PIN or enable fingerprint unlock. From there you can add, search, and generate encrypted credentials, all private to your account.
-7. **Explore the other tools** from the dashboard — URL/QR scanner, network inspector, privacy audit, steganography lab, global threat map, and the security news feed.
+7. **Explore the other tools** from the dashboard: URL/QR scanner, network inspector, privacy audit, steganography lab, global threat map, and the security news feed.
 8. **Check the Intruder Logs** any time to see timestamped photos of every wrong unlock attempt on your device.
 
 ## FAQ
@@ -250,13 +250,13 @@ Run the app on a device or emulator — ideally one with a front camera and fing
 It's the simplest way to give every installation its own private code without a setup wizard that tips off anyone watching. Just be deliberate about what you type the first time.
 
 **Is my data safe if someone else uses my phone?**
-Only if they don't know the unlock code or your account password — and even then, the vault itself is gated behind a second PIN/fingerprint check. Every wrong unlock attempt is also silently photographed.
+Only if they don't know the unlock code or your account password. Even then, the vault itself is gated behind a second PIN/fingerprint check. Every wrong unlock attempt is also silently photographed.
 
 **Can two people use the same installed app with different vaults?**
-Yes. Accounts are fully isolated through Firebase Authentication and per-user Firestore paths — one person's saved credentials are never visible to another account, even on the same device.
+Yes. Accounts are fully isolated through Firebase Authentication and per-user Firestore paths. One person's saved credentials are never visible to another account, even on the same device.
 
 **What happens if I forget my unlock code?**
-There's currently no recovery flow for the calculator unlock code — clearing the app's storage resets it, but that also clears the locally cached state. Your vault data itself stays safe in Firestore, tied to your account login.
+There's currently no recovery flow for the calculator unlock code. Clearing the app's storage resets it, but that also clears the locally cached state. Your vault data itself stays safe in Firestore, tied to your account login.
 
 ## 📂 Project Structure
 
@@ -287,10 +287,10 @@ CipherMatrix/
 
 ## 🔒 Security Notes
 
-- **Per-user data isolation is enforced server-side** via Firestore security rules, not just in the app's UI — this holds even if the client code were bypassed.
+- **Per-user data isolation is enforced server-side** via Firestore security rules, not just in the app's UI. This holds even if the client code were bypassed.
 - **Encryption keys never touch source code.** The AES-256-GCM key used to protect the vault is generated on first use and sealed inside the Android Keystore, backed by hardware where available.
 - API keys (VirusTotal, News API) live in `local.properties` / `BuildConfig` fields, never committed to source.
-- The hidden-camera "intruder selfie" feature captures photos without the other person's knowledge — this is intended purely as a personal anti-tamper feature for *your own device*.
+- The hidden-camera "intruder selfie" feature captures photos without the other person's knowledge. This is intended purely as a personal anti-tamper feature for *your own device*.
 
 ## Roadmap
 
@@ -309,12 +309,12 @@ See [LICENSE](LICENSE) for terms.
 
 CipherMatrix stands on the shoulders of some excellent open-source libraries:
 
-- [Firebase](https://firebase.google.com/) — Authentication & Firestore
-- [Retrofit](https://square.github.io/retrofit/) + [Gson](https://github.com/google/gson) — networking
-- [Glide](https://github.com/bumptech/glide) — image loading
-- [ZXing (journeyapps)](https://github.com/journeyapps/zxing-android-embedded) — QR scanning
-- [exp4j](https://github.com/fasseg/exp4j) — expression evaluation for the calculator
-- [AndroidX Biometric](https://developer.android.com/jetpack/androidx/releases/biometric) — fingerprint authentication
+- [Firebase](https://firebase.google.com/): Authentication & Firestore
+- [Retrofit](https://square.github.io/retrofit/) + [Gson](https://github.com/google/gson): networking
+- [Glide](https://github.com/bumptech/glide): image loading
+- [ZXing (journeyapps)](https://github.com/journeyapps/zxing-android-embedded): QR scanning
+- [exp4j](https://github.com/fasseg/exp4j): expression evaluation for the calculator
+- [AndroidX Biometric](https://developer.android.com/jetpack/androidx/releases/biometric): fingerprint authentication
 
 ---
 
